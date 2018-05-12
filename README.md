@@ -1,4 +1,4 @@
-#Zurich Real Estate App
+# Zurich Real Estate App
 
-This is a Shiny App for the Zurich Real Estate Market. It will be presented at the eRum 2018 in the Shiny Demo session. 
-You can find the code of the App as well as the presentation in this repository.
+This is a Shiny app for the Zurich real estate market. The app will be presented for the first time at erum 2108 and is still under development.
+The code and presentation slides can be obtained from this repository. I am very grateful for feedback of any kind.

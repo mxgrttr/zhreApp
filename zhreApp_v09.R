@@ -8,7 +8,7 @@
 
 #setwd("L:/STAT/03_AS/02_Datengrundlagen/MGr_Handaenderungen/Internettool/ImmoApp/01_zhre_APP/")
 
-source("quickXLSX.R")
+#source("quickXLSX.R")
 
 devtools::install_github("statistikZH/statR") 
 
@@ -323,20 +323,19 @@ server <- function(input, output, session) {
       mutate_at(vars(mean_price, sd_price, q25_price, med_price, q75_price, n_obs),funs(formatC(round(as.numeric(.),0),format="f", digits=0, big.mark="'")))
   })
   
+
+  
   # Zusatztabelle (wird fuer Datentabelle benoetigt) ----
   TabSum <- reactive({
     subset(TabSum1(),TabSum1()[[2]]=="TOTAL") %>% 
       dplyr::select(Year=year, 'Number of Observations'=n_obs, 'Price (Mean)' = mean_price, 'Price (sd)' = sd_price, 'Price (Q1)' = q25_price, 'Price (Median)' = med_price, 'Price (Q3)' = q75_price)
   })
   
-  tab_selection <- reactive({
-    paste0("Type: ", if(input$typ == "EFH"){"Detached houses"}else if(input$typ == "STW"){"Condomiums"}else{"Land"}, "Region:", if(input$Raum == "region"){input$reg_code}else if (input$Raum == "bezirk"){input$bez_code}else if (input$Raum == "bfs_akt"){input$gem_code}else{"Canton of Zurich"}, " Years: ", input$jahr1, " to ", input$jahr2 )
-  })
+
 
     TabSum_dl <- reactive({
     subset(TabSum_1(),TabSum1()[[2]]=="TOTAL") %>% 
-      dplyr::select(Year=year, 'Number of Observations'=n_obs, 'Price (Mean)' = mean_price, 'Price (sd)' = sd_price, 'Price (Q1)' = q25_price, 'Price (Median)' = med_price, 'Price (Q3)' = q75_price) %>% 
-      bind_cols(tab_selection)
+      dplyr::select(Year=year, 'Number of Observations'=n_obs, 'Price (Mean)' = mean_price, 'Price (sd)' = sd_price, 'Price (Q1)' = q25_price, 'Price (Median)' = med_price, 'Price (Q3)' = q75_price) 
   })
   
   # Data for the map----
@@ -345,6 +344,7 @@ server <- function(input, output, session) {
       group_by(id_grid) %>%
       summarise(anz = n(),
                 med_price=median(price)) %>%
+      mutate(med_price = ifelse(anz<3, NA, med_price)) %>% 
       arrange(id_grid) %>%
       ungroup()
   })
