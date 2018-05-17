@@ -500,7 +500,7 @@ server <- function(input, output, session) {
     tags$div(
       HTML('<p class="caption">
            <h4>General information </h4>
-           This APP is designed for internal support in the statistical office of the Canton of Zurich. It is based on the sales of single-family houses, condominiums and building land in the Canton of Zurich between 2007 and 2017. eRum 2018 has slightly modified the current version for demonstration purposes. In particular, APP was translated into English and the prices were distorted using a random variable.<br>
+           This APP is designed for internal support in the statistical office of the Canton of Zurich. It is based on the sales of single-family houses, condominiums and building land in the Canton of Zurich between 2007 and 2017. For demonstration purpuse the APP is slightly modified. In particular, the APP were translated into English, the number of observations was reduced and the prices replaced by random numbers.<br>
            
            <h4>Provisional data</h4>
            
@@ -513,7 +513,7 @@ server <- function(input, output, session) {
            As soon as your selection is too small (< 4 sales), the APP automatically displays evaluations without the object filters. In this case, please adjust your selection filters. <br>
            
            <h4>Feedback</h4>
-           Feedback on APP is very welcome at max.gruetter@gmail.com.</p>')
+           Feedback on APP is very welcome at max.gruetter@gmail.com, @maxgruetter on twitter or mxgrttr on github.</p>')
       )   
   })
   
